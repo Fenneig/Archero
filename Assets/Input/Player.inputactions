@@ -1,0 +1,46 @@
+{
+    "name": "Player",
+    "maps": [
+        {
+            "name": "Ground",
+            "id": "2f3559fa-699e-4827-b3e9-b680864270e1",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "c5925483-21f7-4a6f-bb75-aed935eef19a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9d763336-f275-4e2c-8a2c-86323a0b2678",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultControl",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "DefaultControl",
+            "bindingGroup": "DefaultControl",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
