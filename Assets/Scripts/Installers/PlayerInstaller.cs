@@ -1,4 +1,4 @@
-using Archero.Player;
+using Archero.Character.Player;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +8,7 @@ namespace Archero.Installers
     {
         [SerializeField] private PlayerUnit _playerUnitPrefab;
         [SerializeField] private Transform _playerSpawnPosition;
-        
+
         public override void InstallBindings()
         {
             var player = Container.InstantiatePrefabForComponent<PlayerUnit>(

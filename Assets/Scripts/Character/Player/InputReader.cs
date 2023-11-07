@@ -2,22 +2,22 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Archero.Player
+namespace Archero.Character.Player
 {
-    [RequireComponent(typeof(MovementComponent))]
+    [RequireComponent(typeof(PlayerUnit))]
     public class InputReader : MonoBehaviour
     {
-        private MovementComponent _movementComponent;
+        private PlayerUnit _playerUnit;
 
         private void Awake()
         {
-            _movementComponent = GetComponent<MovementComponent>();
+            _playerUnit = GetComponent<PlayerUnit>();
         }
 
         [UsedImplicitly]
         public void OnMovement(InputAction.CallbackContext context)
         {
-            _movementComponent.Direction = context.ReadValue<Vector2>();
+            _playerUnit.MovementComponent.Direction = context.ReadValue<Vector2>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Archero.Player;
+﻿using Archero.Character.Player;
 using Cinemachine;
 using UnityEngine;
 using Zenject;
