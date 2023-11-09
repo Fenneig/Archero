@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678684728944460972, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_Height
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 678684728944460972, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_Radius
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 678684728944460972, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_AgentTypeID
+      value: -1372625422
+      objectReference: {fileID: 0}
+    - target: {fileID: 678684728944460972, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_WalkableMask
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 678684728944460973, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
       propertyPath: m_Name
-      value: GroundEnemy
+      value: FlyingEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 678684728944460979, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +70,34 @@ PrefabInstance:
     - target: {fileID: 678684728944460979, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814434949870241797, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814434949870241797, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_Center.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378135073613920227, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305475564477092288, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186318344080139970, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186318344080139970, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717998828655348544, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}

@@ -30,29 +30,30 @@ namespace Archero.Character.Player
             
             MovementComponent.Setup(_playerDefinition.MoveSpeed, CachedTransform);
             HealthComponent.Setup(_playerDefinition.Hp);
-            AttackComponent.Setup(CachedTransform, AttackCooldown, _playerDefinition.AttackDamage);
+            AttackComponent.Setup(CachedTransform, _playerDefinition.AttackDamage);
         }
 
         private void Update()
         {
             if (MovementComponent.Direction.magnitude == 0)
             {
-               AttackEnemy();
+               Attack();
             }
         }
 
-        private void AttackEnemy()
+        private void Attack()
         {
             if (!AttackCooldown.IsReady) return;
 
             if (!TryGetClosestEnemy(out var closestTransform)) return;
-
-            CachedTransform.DOLookAt(closestTransform.position, .1f)
+            
+            Vector3 lookAt = new Vector3(closestTransform.position.x, CachedTransform.position.y, closestTransform.position.z);
+            CachedTransform.DOLookAt(lookAt, .1f)
+                .OnPlay(() => AttackCooldown.Reset())
                 .OnComplete(() =>
             {
                 AttackComponent.SetTarget(closestTransform);
                 AttackComponent.Attack();
-                AttackCooldown.Reset();
             });
         }
 

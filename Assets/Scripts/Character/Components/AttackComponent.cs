@@ -16,7 +16,6 @@ namespace Archero.Character.Components
         
         private Transform _cachedTransform;
         private Transform _targetTransform;
-        private Timer _attackCooldown;
         private int _damage;
 
         public bool IsTargetInView() => 
@@ -24,10 +23,9 @@ namespace Archero.Character.Components
         public bool IsTargetInView(Transform targetTransform) => 
             ViewHelper.IsTargetInUnitView(_cachedTransform, targetTransform, _obstacleLayers, _projectileRadius, _attackSpawnTransform);
 
-        public void Setup(Transform cachedTransform, Timer attackCooldown, int damage)
+        public void Setup(Transform cachedTransform, int damage)
         {
             _cachedTransform = cachedTransform;
-            _attackCooldown = attackCooldown;
             _damage = damage;
         }
 
@@ -42,7 +40,6 @@ namespace Archero.Character.Components
             Vector3 attackDirection = _targetTransform.position - _cachedTransform.position;
             projectile.Setup(_damage, _projectileSpeed);
             projectile.ShootInDirection(attackDirection);
-            _attackCooldown.Reset();
         }
     }
 }

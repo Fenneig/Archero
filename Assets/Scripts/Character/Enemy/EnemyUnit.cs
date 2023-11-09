@@ -48,7 +48,7 @@ namespace Archero.Character.Enemy
             MovementComponent = GetComponent<EnemyMovementComponent>();
             
             MovementComponent.Setup(_enemyDefinition.MoveSpeed, CachedTransform);
-            AttackComponent.Setup(CachedTransform, AttackCooldown, _enemyDefinition.AttackDamage);
+            AttackComponent.Setup(CachedTransform, _enemyDefinition.AttackDamage);
             AttackComponent.SetTarget(TargetTransform);
             HealthComponent.Setup(_enemyDefinition.Hp);
         }
@@ -84,11 +84,16 @@ namespace Archero.Character.Enemy
 
         public void Attack()
         {
-            CachedTransform.DOLookAt(TargetTransform.position, .1f).OnComplete(() =>
-            {
-                AttackComponent.Attack();
-                _currentState.EarlyComplete();
-            });
+            Vector3 lookAt = new Vector3(TargetTransform.position.x, CachedTransform.position.y, TargetTransform.position.z);
+
+            var tween = CachedTransform.DOLookAt(lookAt, .1f)
+                .OnPlay(() => AttackCooldown.Reset())
+                .OnComplete(() =>
+                {
+                    AttackComponent.Attack();
+                    _currentState.EarlyComplete();
+                });
+            ActiveTweens.Add(tween);
         }
     }
 }

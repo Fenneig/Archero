@@ -3,7 +3,7 @@ using Cinemachine;
 using UnityEngine;
 using Zenject;
 
-namespace Archero.Camera
+namespace Archero.CameraComponents
 {
     public class SetFollowComponent : MonoBehaviour
     {
