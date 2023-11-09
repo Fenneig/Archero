@@ -16,25 +16,39 @@ namespace Archero.Character.Enemy
         [SerializeField] private IdleState _idleState;
         [Header("Definition"), Space]
         [SerializeField] private EnemyDefinition _enemyDefinition;
-        [SerializeField] private Timer _attackCooldown;
         [SerializeField] private float _attackPrepareRange;
         [SerializeField] private float _attackRange;
-
-        [Inject] private PlayerUnit _playerUnit;
+        
         private BehaviourState _currentState;
 
-        private float DistanceToTarget => (CachedTransform.position - TargetTransform.position).magnitude;
-        public Transform TargetTransform => _playerUnit.CachedTransform;
-        public Timer AttackCooldown => _attackCooldown;
+        public Transform TargetTransform { get; private set; }
         public EnemyMovementComponent MovementComponent { get; private set; }
+        private float DistanceToTarget => TargetTransform == null ? 0 : (CachedTransform.position - TargetTransform.position).magnitude;
+
+        [Inject]
+        private void Construct(PlayerUnit playerUnit)
+        {
+            TargetTransform = playerUnit.CachedTransform;
+            playerUnit.HealthComponent.OnDied += () => TargetTransform = null;
+        }
 
         protected override void Awake()
         {
             base.Awake();
-            MovementComponent = GetComponent<EnemyMovementComponent>();
-            MovementComponent.Setup(_enemyDefinition.MoveSpeed);
-            _attackCooldown.Value = 1f / _enemyDefinition.AttackSpeed;
+            SetupComponents();
             SetState(_idleState);
+        }
+
+        protected override void SetupComponents()
+        {
+            base.SetupComponents();
+            AttackCooldown = new Timer {Value = 1f / _enemyDefinition.AttackSpeed};
+            MovementComponent = GetComponent<EnemyMovementComponent>();
+            
+            MovementComponent.Setup(_enemyDefinition.MoveSpeed, CachedTransform);
+            AttackComponent.Setup(CachedTransform, AttackCooldown, _enemyDefinition.AttackDamage);
+            AttackComponent.SetTarget(TargetTransform);
+            HealthComponent.Setup(_enemyDefinition.Hp);
         }
 
         private void Update()
@@ -45,11 +59,11 @@ namespace Archero.Character.Enemy
             }
             else
             {
-                if (_attackCooldown.IsReady && _attackRange >= DistanceToTarget && TargetInView())
+                if (AttackCooldown.IsReady && _attackRange >= DistanceToTarget && AttackComponent.IsTargetInView())
                 {
                     SetState(_attackState);
                 }
-                else if (_attackRange < DistanceToTarget)
+                else if (_attackRange < DistanceToTarget || !AttackComponent.IsTargetInView())
                 {
                     SetState(_chasePlayerState);
                 }
@@ -60,24 +74,22 @@ namespace Archero.Character.Enemy
             }
         }
 
-        private bool TargetInView()
-        {
-            return false;
-        }
-
         private void SetState(BehaviourState state)
         {
+            MovementComponent.Stop();
             _currentState = Instantiate(state);
             _currentState.StateOwner = this;
+            _currentState.Init();
         }
-
-
+        
         public bool IsReadyForAttack() => 
-            DistanceToTarget <= _attackPrepareRange;
+            DistanceToTarget <= _attackPrepareRange && AttackComponent.IsTargetInView();
 
         public void Attack()
         {
-            _attackCooldown.Reset();
+            CachedTransform.LookAt(TargetTransform);
+            AttackComponent.Attack();
+            SetState(_idleState);
         }
     }
 }

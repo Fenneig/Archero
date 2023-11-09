@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Standart
   m_EditorClassIdentifier: 
   _moveSpeed: 10
-  _hp: 0
-  _attackSpeed: 1
-  _attackDamage: 0
+  _hp: 100
+  _attackSpeed: 1.5
+  _attackDamage: 25

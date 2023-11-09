@@ -14,10 +14,11 @@ namespace Archero.Installers
             var player = Container.InstantiatePrefabForComponent<PlayerUnit>(
                 _playerUnitPrefab, _playerSpawnPosition.position, Quaternion.identity, null);
 
-            Container.Bind<PlayerUnit>().
-                FromInstance(player).
-                AsSingle().
-                NonLazy();
+            Container.Bind<PlayerUnit>()
+                .FromInstance(player)
+                .AsSingle()
+                .NonLazy();
+            
             Container.QueueForInject(player);
         }
     }

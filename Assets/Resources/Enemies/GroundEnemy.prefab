@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 678684728944460972}
   - component: {fileID: 678684728944460977}
   - component: {fileID: 5292820398953876038}
-  m_Layer: 0
-  m_Name: Enemy
+  - component: {fileID: 7984803820217809872}
+  - component: {fileID: 8051938744201841375}
+  - component: {fileID: 1814434949870241797}
+  m_Layer: 8
+  m_Name: GroundEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7304036295277854118}
+  - {fileID: 3378135073613920227}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,8 +77,6 @@ MonoBehaviour:
   _chasePlayerState: {fileID: 11400000, guid: 78c45a10c47a5f34aab8d575f89bc332, type: 2}
   _idleState: {fileID: 11400000, guid: 2b11a152519314248b9f37449cae55eb, type: 2}
   _enemyDefinition: {fileID: 11400000, guid: bde92577070fd4c47a5840739c7e59f3, type: 2}
-  _attackCooldown:
-    _value: 0.5
   _attackPrepareRange: 8
   _attackRange: 10
 --- !u!114 &5292820398953876038
@@ -90,6 +92,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 678684728944460972}
+--- !u!114 &7984803820217809872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678684728944460973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ffa7e1ec594c7e955be08dd4547b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 2615372345010129334, guid: bf503579a7fb99b4e868504b121f68df, type: 3}
+  _projectileRadius: 0.1
+  _projectileSpeed: 1
+  _attackSpawnTransform: {fileID: 3378135073613920227}
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 448
+--- !u!114 &8051938744201841375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678684728944460973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72384e68c6e47199b39e63e73317446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1814434949870241797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678684728944460973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &773801632583736573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3378135073613920227}
+  m_Layer: 8
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3378135073613920227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773801632583736573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 678684728944460979}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2244595880034740702
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7304036295277854118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +211,7 @@ GameObject:
   - component: {fileID: 7717998828655348544}
   - component: {fileID: 2427842329018909084}
   - component: {fileID: 1351750502199902456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +294,7 @@ GameObject:
   - component: {fileID: 7186318344080139970}
   - component: {fileID: 8270672895598735492}
   - component: {fileID: 1108071068825255132}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

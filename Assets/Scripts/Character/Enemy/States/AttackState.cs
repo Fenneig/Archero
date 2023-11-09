@@ -8,9 +8,11 @@ namespace Archero.Character.Enemy.States
         public override void Init()
         {
             StateOwner.Attack();
-            IsFinished = true;
         }
 
-        public override void OnUpdate() { }
+        public override void OnUpdate()
+        {
+            
+        }
     }
 }

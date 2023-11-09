@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8460125256184152872}
-  - component: {fileID: 1547692152416994048}
+  - component: {fileID: 6817458867313412316}
   m_Layer: 0
-  m_Name: EnemySpawnPosition
+  m_Name: EnemyMarker
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1547692152416994048
+--- !u!114 &6817458867313412316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2299119397502417151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d883e3624b484ef8abe1d80bd92dea6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c66ac8718734c65ae88f740d59ccbe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitPrefab: {fileID: 678684728944460977, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+  _enemyType: 0

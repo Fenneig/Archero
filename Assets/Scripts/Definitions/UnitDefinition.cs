@@ -6,7 +6,7 @@ namespace Archero.Definitions
     {
         [SerializeField] private float _moveSpeed;
         [SerializeField] private int _hp;
-        [SerializeField] private float _attackSpeed;
+        [SerializeField, Tooltip("Attacks per second")] private float _attackSpeed;
         [SerializeField] private int _attackDamage;
         
         public float MoveSpeed => _moveSpeed;

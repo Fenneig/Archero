@@ -17,11 +17,11 @@ namespace Archero.Character.Player
             if (Direction.x != 0 || Direction.y != 0)
             {
                 var moveDirection = new Vector3(Direction.x, 0, Direction.y);
-                NavMeshAgent.SetDestination(transform.position + moveDirection);
+                NavMeshAgent.SetDestination(CachedTransform.position + moveDirection);
             }
             else
             {
-                NavMeshAgent.SetDestination(transform.position);
+                NavMeshAgent.SetDestination(CachedTransform.position);
             }
         }
     }
