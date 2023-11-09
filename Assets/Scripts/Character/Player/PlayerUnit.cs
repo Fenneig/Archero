@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Archero.Components;
 using Archero.Definitions;
 using Archero.Utils;
 using DG.Tweening;
@@ -11,8 +12,10 @@ namespace Archero.Character.Player
     {
         [SerializeField] private PlayerDefinition _playerDefinition;     
         [SerializeField] private float _attackRange;
-
-       [SerializeField] private List<Transform> _enemiesTransform = new();
+        
+        private List<Transform> _enemiesTransform = new();
+        public Inventory Inventory { get; } = new();
+        
         public List<Transform> EnemiesTransform => _enemiesTransform;
         public PlayerMovementComponent MovementComponent { get; private set; }
 
@@ -85,6 +88,14 @@ namespace Archero.Character.Player
             }
 
             return closestTransform != null && currentClosestEnemyDistance <= _attackRange;
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<ICollectable>(out var collectable))
+            {
+                collectable.Collect(Inventory);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Archero.Character
         public Transform CachedTransform { get; private set; }
         public HealthComponent HealthComponent { get; private set; }
         protected AttackComponent AttackComponent { get; private set; }
-        public Timer AttackCooldown { get; protected set; }
+        protected Timer AttackCooldown { get; set; }
 
 
         protected virtual void Awake()

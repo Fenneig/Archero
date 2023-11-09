@@ -1,10 +1,12 @@
 ﻿using Archero.Character.Enemy.States;
 using Archero.Character.Player;
+using Archero.Components;
 using Archero.Definitions;
 using Archero.Utils;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Archero.Character.Enemy
 {
@@ -19,9 +21,12 @@ namespace Archero.Character.Enemy
         [SerializeField] private EnemyDefinition _enemyDefinition;
         [SerializeField] private float _attackPrepareRange;
         [SerializeField] private float _attackRange;
+        [Header("Inventory")] 
+        [SerializeField] private GoldCoin _carryItem;
+        [SerializeField, Range(1, 5)] private int _minCoins;
+        [SerializeField, Range(1, 5)] private int _maxCoins;
         
         private BehaviourState _currentState;
-
         public Transform TargetTransform { get; private set; }
         public EnemyMovementComponent MovementComponent { get; private set; }
         public Timer IdleTimer => _enemyDefinition.IdleTimer;
@@ -51,6 +56,11 @@ namespace Archero.Character.Enemy
             AttackComponent.Setup(CachedTransform, _enemyDefinition.AttackDamage);
             AttackComponent.SetTarget(TargetTransform);
             HealthComponent.Setup(_enemyDefinition.Hp);
+        }
+
+        private void OnValidate()
+        {
+            if (_minCoins > _maxCoins) _maxCoins = _minCoins;
         }
 
         private void Update()
@@ -94,6 +104,17 @@ namespace Archero.Character.Enemy
                     _currentState.EarlyComplete();
                 });
             ActiveTweens.Add(tween);
+        }
+
+        protected override void Die()
+        {
+            if (_carryItem != null)
+            {
+             GoldCoin goldCoin =   Instantiate(_carryItem, CachedTransform.position, _carryItem.transform.rotation);
+             goldCoin.Setup(Random.Range(_minCoins,_maxCoins));
+            }
+
+            base.Die();
         }
     }
 }

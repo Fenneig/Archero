@@ -26,16 +26,11 @@ namespace Archero.Interactions
             _rigidbody.AddForce(direction.normalized * _projectileSpeed, ForceMode.Impulse);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent<HealthComponent>(out var targetHealth))
                 targetHealth.ApplyDamage(_damage);
-
-            DestroyObject();
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
+            
             DestroyObject();
         }
 

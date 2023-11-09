@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Archero.Character.Enemy;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace Archero.Character.Enemy.UI
+namespace Archero.UI
 {
     public class EnemyHealthWidget : MonoBehaviour
     {
