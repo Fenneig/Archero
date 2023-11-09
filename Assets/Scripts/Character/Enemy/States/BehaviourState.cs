@@ -8,5 +8,6 @@ namespace Archero.Character.Enemy.States
         public bool IsFinished { get; protected set; }
         public virtual void Init(){}
         public abstract void OnUpdate();
+        public void EarlyComplete() => IsFinished = true;
     }
 }

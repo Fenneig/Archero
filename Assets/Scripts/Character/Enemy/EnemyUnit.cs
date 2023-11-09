@@ -2,6 +2,7 @@
 using Archero.Character.Player;
 using Archero.Definitions;
 using Archero.Utils;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -23,6 +24,7 @@ namespace Archero.Character.Enemy
 
         public Transform TargetTransform { get; private set; }
         public EnemyMovementComponent MovementComponent { get; private set; }
+        public Timer IdleTimer => _enemyDefinition.IdleTimer;
         private float DistanceToTarget => TargetTransform == null ? 0 : (CachedTransform.position - TargetTransform.position).magnitude;
 
         [Inject]
@@ -67,16 +69,11 @@ namespace Archero.Character.Enemy
                 {
                     SetState(_chasePlayerState);
                 }
-                else if (!_currentState.name.Contains(_idleState.name))
-                {
-                    SetState(_idleState);
-                }
             }
         }
 
         private void SetState(BehaviourState state)
         {
-            MovementComponent.Stop();
             _currentState = Instantiate(state);
             _currentState.StateOwner = this;
             _currentState.Init();
@@ -87,9 +84,11 @@ namespace Archero.Character.Enemy
 
         public void Attack()
         {
-            CachedTransform.LookAt(TargetTransform);
-            AttackComponent.Attack();
-            SetState(_idleState);
+            CachedTransform.DOLookAt(TargetTransform.position, .1f).OnComplete(() =>
+            {
+                AttackComponent.Attack();
+                _currentState.EarlyComplete();
+            });
         }
     }
 }

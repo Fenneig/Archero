@@ -48,7 +48,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 678684728944460973}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.66
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 2615372345010129334, guid: bf503579a7fb99b4e868504b121f68df, type: 3}
   _projectileRadius: 0.1
-  _projectileSpeed: 1
+  _projectileSpeed: 0.8
   _attackSpawnTransform: {fileID: 3378135073613920227}
   _obstacleLayers:
     serializedVersion: 2

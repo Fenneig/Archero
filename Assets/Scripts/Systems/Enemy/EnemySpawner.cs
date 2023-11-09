@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Archero.Character.Enemy;
 using Archero.Character.Player;
 using UnityEngine;
@@ -29,13 +28,15 @@ namespace Archero.Systems.Enemy
         [ContextMenu("Spawn")]
         public void SpawnEnemies()
         {
-            _enemies.ForEach(enemy =>
-            {
-                EnemyUnit enemyUnit = _enemyFactory.Create(enemy.EnemyType, enemy.transform.position).GetComponent<EnemyUnit>();
-                
-                _enemiesList.Add(enemyUnit.CachedTransform);
-                enemyUnit.HealthComponent.OnDied += () => _enemiesList.Remove(enemyUnit.CachedTransform);
-            });
+            _enemies.ForEach(SpawnEnemy);
+        }
+
+        private void SpawnEnemy(EnemyMarker enemy)
+        {
+            EnemyUnit enemyUnit = _enemyFactory.Create(enemy.EnemyType, enemy.transform.position).GetComponent<EnemyUnit>();
+
+            _enemiesList.Add(enemyUnit.CachedTransform);
+            enemyUnit.HealthComponent.OnDied += () => _enemiesList.Remove(enemyUnit.CachedTransform);
         }
     }
 }

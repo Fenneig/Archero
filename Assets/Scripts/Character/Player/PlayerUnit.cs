@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Archero.Definitions;
 using Archero.Utils;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Archero.Character.Player
@@ -45,11 +46,14 @@ namespace Archero.Character.Player
             if (!AttackCooldown.IsReady) return;
 
             if (!TryGetClosestEnemy(out var closestTransform)) return;
-            
-            CachedTransform.LookAt(closestTransform);
-            AttackComponent.SetTarget(closestTransform);
-            AttackComponent.Attack();
-            AttackCooldown.Reset();
+
+            CachedTransform.DOLookAt(closestTransform.position, .1f)
+                .OnComplete(() =>
+            {
+                AttackComponent.SetTarget(closestTransform);
+                AttackComponent.Attack();
+                AttackCooldown.Reset();
+            });
         }
 
         private bool TryGetClosestEnemy(out Transform closestTransform)
