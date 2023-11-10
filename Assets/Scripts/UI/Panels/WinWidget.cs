@@ -20,7 +20,7 @@ namespace Archero.UI.Panels
 
         private void Awake()
         {
-            _restartButton.onClick.AddListener(() => _sceneLoader.ReloadScene());
+            _restartButton.onClick.AddListener(() => _sceneLoader.LoadScenes());
             
             _exitButton.onClick.AddListener(Application.Quit);
         }

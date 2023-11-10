@@ -10,11 +10,15 @@ namespace Archero.Systems
         [SerializeField] private string _mainSceneName;
         [SerializeField] private List<string> _additionalScenesName;
 
-        public void ReloadScene()
+        private void Awake()
         {
             PauseService.I.SetPaused(false);
-            SceneManager.LoadScene(_mainSceneName);
             _additionalScenesName.ForEach(sceneName => SceneManager.LoadScene(sceneName, LoadSceneMode.Additive));
+        }
+
+        public void LoadScenes()
+        {
+            SceneManager.LoadScene(_mainSceneName);
         }
     }
 }
