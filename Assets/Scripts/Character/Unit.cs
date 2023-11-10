@@ -49,7 +49,6 @@ namespace Archero.Character
 
         protected virtual void Die()
         {
-            ActiveTweens.ForEach(tween => tween?.Kill());
             Destroy(gameObject);
         }
 
@@ -63,6 +62,7 @@ namespace Archero.Character
 
         private void OnDestroy()
         {
+            ActiveTweens.ForEach(tween => tween?.Kill());
             PauseService.I.UnRegister(this);
         }
     }

@@ -52,7 +52,7 @@ namespace Archero.Character.Player
             if (!TryGetClosestEnemy(out var closestTransform)) return;
             
             Vector3 lookAt = new Vector3(closestTransform.position.x, CachedTransform.position.y, closestTransform.position.z);
-            CachedTransform.DOLookAt(lookAt, .1f)
+            var tween = CachedTransform.DOLookAt(lookAt, .1f)
                 .OnPlay(() => AttackCooldown.Reset())
                 .OnComplete(() =>
             {
@@ -60,6 +60,7 @@ namespace Archero.Character.Player
                 AttackComponent.SetTarget(closestTransform);
                 AttackComponent.Attack();
             });
+            ActiveTweens.Add(tween);
         }
 
         private bool TryGetClosestEnemy(out Transform closestTransform)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3557364352040642566}
   - component: {fileID: 924003898619011442}
   - component: {fileID: 4779670445275216554}
+  - component: {fileID: 4779670445275216555}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -120,7 +121,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 924003898619011442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4779670445275216555}
+        m_TargetAssemblyTypeName: Archero.Systems.Pause.PauseButton, Assembly-CSharp
+        m_MethodName: SetPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4779670445275216555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016812295827072126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1a87100d3843b89e373c8811404a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCanvas: {fileID: 4779670445297080415}
 --- !u!1 &4779670444457838253
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3666674211980474621}
   m_Layer: 5
-  m_Name: Pause
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
