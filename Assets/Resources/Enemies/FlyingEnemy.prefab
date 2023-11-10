@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 678684728944460977, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
+      propertyPath: _enemyDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 6131d226fde350e4d8655545908a0c08, type: 2}
     - target: {fileID: 678684728944460979, guid: 251d8e64a5028d545bd718b9cbbbd883, type: 3}
       propertyPath: m_RootOrder
       value: 0

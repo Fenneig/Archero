@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7984803820217809872}
   - component: {fileID: 8051938744201841375}
   - component: {fileID: 1814434949870241797}
+  - component: {fileID: 3131024869781093701}
   m_Layer: 8
   m_Name: GroundEnemy
   m_TagString: Untagged
@@ -80,6 +81,9 @@ MonoBehaviour:
   _enemyDefinition: {fileID: 11400000, guid: bde92577070fd4c47a5840739c7e59f3, type: 2}
   _attackPrepareRange: 8
   _attackRange: 10
+  _collideDamage: 10
+  _collideDamageCooldown:
+    _value: 1
   _carryItem: {fileID: 3874733610471443698, guid: 8f47ca2e999964f438d9455bcca74a5a, type: 3}
   _minCoins: 2
   _maxCoins: 5
@@ -140,6 +144,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &3131024869781093701
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678684728944460973}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 1
 --- !u!1 &773801632583736573
 GameObject:
   m_ObjectHideFlags: 0

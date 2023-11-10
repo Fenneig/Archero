@@ -17,7 +17,7 @@ namespace Archero.Components
         private void Awake()
         {
             _cachedTransform = transform;
-            _cachedTransform.position += Vector3.up;
+            _cachedTransform.position -= new Vector3(0, _cachedTransform.position.y - 1f, 0);
         }
 
         private void Update()

@@ -17,11 +17,14 @@ namespace Archero.Character.Enemy
         [SerializeField] private AttackState _attackState;
         [SerializeField] private ChasePlayerState _chasePlayerState;
         [SerializeField] private IdleState _idleState;
-        [Header("Definition"), Space]
+        [Header("Definition"), Space] 
         [SerializeField] private EnemyDefinition _enemyDefinition;
-        [SerializeField] private float _attackPrepareRange;
-        [SerializeField] private float _attackRange;
-        [Header("Inventory")] 
+        [SerializeField, Min(0)] private float _attackPrepareRange;
+        [SerializeField, Min(0)] private float _attackRange;
+        [Header("Collide damage"), Space]
+        [SerializeField, Min(0)] private int _collideDamage;
+        [SerializeField] private Timer _collideDamageCooldown;
+        [Header("Inventory")]
         [SerializeField] private GoldCoin _carryItem;
         [SerializeField, Range(1, 5)] private int _minCoins;
         [SerializeField, Range(1, 5)] private int _maxCoins;
@@ -36,7 +39,6 @@ namespace Archero.Character.Enemy
         private void Construct(PlayerUnit playerUnit)
         {
             TargetTransform = playerUnit.CachedTransform;
-            playerUnit.HealthComponent.OnDied += () => TargetTransform = null;
         }
 
         protected override void Awake()
@@ -106,12 +108,22 @@ namespace Archero.Character.Enemy
             ActiveTweens.Add(tween);
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!_collideDamageCooldown.IsReady) return;
+
+            if (!other.gameObject.TryGetComponent<PlayerUnit>(out var player)) return;
+            
+            player.HealthComponent.ApplyDamage(_collideDamage);
+            _collideDamageCooldown.Reset();
+        }
+
         protected override void Die()
         {
             if (_carryItem != null)
             {
-             GoldCoin goldCoin =   Instantiate(_carryItem, CachedTransform.position, _carryItem.transform.rotation);
-             goldCoin.Setup(Random.Range(_minCoins,_maxCoins));
+                GoldCoin goldCoin = Instantiate(_carryItem, CachedTransform.position, _carryItem.transform.rotation);
+                goldCoin.Setup(Random.Range(_minCoins, _maxCoins));
             }
 
             base.Die();

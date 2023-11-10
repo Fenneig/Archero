@@ -33,6 +33,9 @@ namespace Archero.Systems.Enemy
 
         private void SpawnEnemy(EnemyMarker enemy)
         {
+            //TODO: сделать нормальный рандомайзер создания врагов. 
+            if (Random.Range(0,2) == 0) return;
+            
             EnemyUnit enemyUnit = _enemyFactory.Create(enemy.EnemyType, enemy.transform.position).GetComponent<EnemyUnit>();
 
             _enemiesList.Add(enemyUnit.CachedTransform);

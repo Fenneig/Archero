@@ -14,8 +14,8 @@ namespace Archero.Character.Player
         [SerializeField] private float _attackRange;
         
         private List<Transform> _enemiesTransform = new();
-        public Inventory Inventory { get; } = new();
         
+        public Inventory Inventory { get; } = new();
         public List<Transform> EnemiesTransform => _enemiesTransform;
         public PlayerMovementComponent MovementComponent { get; private set; }
 
@@ -55,6 +55,7 @@ namespace Archero.Character.Player
                 .OnPlay(() => AttackCooldown.Reset())
                 .OnComplete(() =>
             {
+                if (closestTransform == null) return;
                 AttackComponent.SetTarget(closestTransform);
                 AttackComponent.Attack();
             });
@@ -96,6 +97,11 @@ namespace Archero.Character.Player
             {
                 collectable.Collect(Inventory);
             }
+        }
+
+        protected override void Die()
+        {
+            Debug.Log("Game over");
         }
     }
 }
