@@ -55,15 +55,14 @@ namespace Archero.Character
         public virtual void SetPaused(bool isPaused)
         {
             IsPaused = isPaused;
-            _navMeshAgent.isStopped = isPaused;
-            if (isPaused) _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            else _rigidbody.constraints = RigidbodyConstraints.None;
+            if (_navMeshAgent.isActiveAndEnabled) _navMeshAgent.isStopped = isPaused;
+            _rigidbody.constraints = isPaused ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
         }
 
         private void OnDestroy()
         {
-            ActiveTweens.ForEach(tween => tween?.Kill());
             PauseService.I.UnRegister(this);
+            ActiveTweens.ForEach(tween => tween?.Kill());
         }
     }
 }

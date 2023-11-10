@@ -101,9 +101,6 @@ namespace Archero.Character.Player
             }
         }
 
-        protected override void Die()
-        {
-            Debug.Log("Game over");
-        }
+        protected override void Die() { }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Archero.Character;
+﻿using Archero.Character;
 using Archero.Systems.Pause;
 using UnityEngine;
 

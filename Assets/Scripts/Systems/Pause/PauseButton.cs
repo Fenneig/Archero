@@ -1,5 +1,4 @@
-﻿using System;
-using Archero.UI.Panels.Factory;
+﻿using Archero.UI.Panels.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +18,8 @@ namespace Archero.Systems.Pause
 
         public void SetPause()
         {
+            if (PauseService.I.IsPaused) return;
+            
             _panelFactory.Create(PanelType.Pause, _mainCanvas);
             PauseService.I.SetPaused(true);
         }
