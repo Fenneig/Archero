@@ -9,17 +9,19 @@ namespace Archero.Installers
         [SerializeField] private PlayerUnit _playerUnitPrefab;
         [SerializeField] private Transform _playerSpawnPosition;
 
+        [Inject] private DiContainer _diContainer;
+
         public override void InstallBindings()
         {
-            var player = Container.InstantiatePrefabForComponent<PlayerUnit>(
+            var player = _diContainer.InstantiatePrefabForComponent<PlayerUnit>(
                 _playerUnitPrefab, _playerSpawnPosition.position, Quaternion.identity, null);
 
-            Container.Bind<PlayerUnit>()
+            _diContainer.Bind<PlayerUnit>()
                 .FromInstance(player)
                 .AsSingle()
                 .NonLazy();
-            
-            Container.QueueForInject(player);
+
+            _diContainer.QueueForInject(player);
         }
     }
 }

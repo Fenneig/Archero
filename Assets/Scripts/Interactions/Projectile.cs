@@ -1,10 +1,12 @@
-﻿using Archero.Character;
+﻿using System;
+using Archero.Character;
+using Archero.Systems.Pause;
 using UnityEngine;
 
 namespace Archero.Interactions
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Projectile : MonoBehaviour
+    public class Projectile : MonoBehaviour, IPauseHandler
     {
         private Rigidbody _rigidbody;
         private int _damage;
@@ -13,6 +15,7 @@ namespace Archero.Interactions
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            PauseService.I.Register(this);
         }
 
         public void Setup(int damage, float projectileSpeed)
@@ -31,9 +34,25 @@ namespace Archero.Interactions
             if (other.gameObject.TryGetComponent<HealthComponent>(out var targetHealth))
                 targetHealth.ApplyDamage(_damage);
             
-            DestroyObject();
+            Destroy(gameObject);
         }
 
-        private void DestroyObject() => Destroy(gameObject);
+        public void SetPaused(bool isPaused)
+        {
+            if (isPaused)
+            {
+                _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            else
+            {
+                _rigidbody.constraints = RigidbodyConstraints.None;
+                _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            PauseService.I.UnRegister(this);
+        }
     }
 }

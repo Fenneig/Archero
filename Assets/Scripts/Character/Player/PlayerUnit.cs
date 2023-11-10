@@ -14,7 +14,6 @@ namespace Archero.Character.Player
         [SerializeField] private float _attackRange;
         
         private List<Transform> _enemiesTransform = new();
-        
         public Inventory Inventory { get; } = new();
         public List<Transform> EnemiesTransform => _enemiesTransform;
         public PlayerMovementComponent MovementComponent { get; private set; }
@@ -38,6 +37,8 @@ namespace Archero.Character.Player
 
         private void Update()
         {
+            if (IsPaused) return;
+            
             if (MovementComponent.Direction.magnitude == 0)
             {
                Attack();

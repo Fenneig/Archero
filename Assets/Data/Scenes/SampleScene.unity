@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028356, g: 0.22571462, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2953,6 +2953,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1624115080}
     m_Modifications:
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4779670445275216555}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Archero.Systems.Pause.PauseButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779670445275216554, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4779670445297080402, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3043,6 +3071,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+--- !u!1 &4779670445275216552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1016812295827072126, guid: 3d2bd4657772bff4db8f1715cea99251, type: 3}
+  m_PrefabInstance: {fileID: 4779670445275216551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4779670445275216555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779670445275216552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1a87100d3843b89e373c8811404a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7238006591126691224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3078,6 +3123,14 @@ PrefabInstance:
       propertyPath: _playerSpawnPosition
       value: 
       objectReference: {fileID: 1688028746}
+    - target: {fileID: 7238006590754932885, guid: 55e1f2297d1996349974b289384836d7, type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238006590754932885, guid: 55e1f2297d1996349974b289384836d7, type: 3}
+      propertyPath: _monoInstallers.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7238006591170292420, guid: 55e1f2297d1996349974b289384836d7, type: 3}
       propertyPath: m_Name
       value: Global

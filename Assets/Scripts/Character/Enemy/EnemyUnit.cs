@@ -67,6 +67,8 @@ namespace Archero.Character.Enemy
 
         private void Update()
         {
+            if (IsPaused) return;
+            
             if (!_currentState.IsFinished)
             {
                 _currentState.OnUpdate();
